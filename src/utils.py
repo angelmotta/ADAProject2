@@ -123,9 +123,8 @@ def getPolygons(matches, a_posits, b_posits):
       acc = sum(matches[m][1])
       inc = a_posits[a_pos][0]
       for weight in matches[m][1]:
-        polygon = []
+        polygon = [Point(inc, 0)]
         proportion = math.floor((weight * matches[m][0]) / acc)
-        polygon.append(Point(inc, 0))
         inc += proportion - 1
         polygon.append(Point(inc, 0))
         polygon.append(Point(b_posits[b_pos][1], transitions))
