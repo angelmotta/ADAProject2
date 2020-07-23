@@ -41,8 +41,9 @@ def getBlocks(arr):
     idx += 1
   if seg > 0:
     arr_blocks.append(seg)
-    print("Positions blocks")
     pos_blocks.append((xi, idx - 1))
+  print("Positions blocks")
+  print(pos_blocks)
   return arr_blocks, pos_blocks
 
 
