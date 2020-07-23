@@ -19,7 +19,6 @@ def minMatchMemorized(a, b):
     b_blocks, b_pos_blocks = getBlocks(b)
     minMatch = minMatchUtil(a_blocks, b_blocks)
     weight = getWeight(minMatch)
-    getPolygons(minMatch, a_pos_blocks, b_pos_blocks)
     return minMatch, weight
 
 

@@ -29,7 +29,11 @@ def main():
     t = 10
     
     img_in = readImage('img/lena_square.jpg', 128)
-    img_out = readImage('img/prueba.jpeg', 128)
+    img = Image.fromarray(np.uint8(img_in*255))
+    img.save('images/t_0.png')
+    img_out = readImage('img/image_bw.jpg', 128)
+    img = Image.fromarray(np.uint8(img_out*255))
+    img.save('images/t_' + str(t+1) + '.png')
     print('[ - ] Imagenes cargadas')
     for i in range(1, t + 1):
         f_t = []
@@ -58,7 +62,7 @@ def main():
                     r_t.append(0)
             f_t.append(r_t)
         img = Image.fromarray(np.uint8(f_t))
-        img.save('img/t_' + str(i) + '.png')
+        img.save('images/t_' + str(i) + '.png')
         print('[ * ] Imagen creada ' + str(i))
         f_t.clear()
 
