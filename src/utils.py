@@ -10,12 +10,12 @@ def getData():
   m = input()
   for i in m.split():
     a.append(int(i))
-
+  """
   print('Values of vector B')
   m = input()
   for i in m.split():
       b.append(int(i))
-  
+  """
   return a, b
 
 
@@ -46,8 +46,8 @@ def getBlocks(arr):
   if seg > 0:
     arr_blocks.append(seg)
     pos_blocks.append((xi, idx - 1))
-  print("Positions blocks")
-  print(pos_blocks)
+  #print("Positions blocks")
+  #print(pos_blocks)
   return arr_blocks, pos_blocks
 
 
@@ -95,7 +95,7 @@ def calcWeight(a, b, pairs):
 
 
 def getPolygons(matches, a_posits, b_posits, transitions):
-  print("\npolygons")
+  #print("\npolygons")
   a_pos = 0
   b_pos = 0
   polygons = []

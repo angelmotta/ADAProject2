@@ -11,16 +11,16 @@ https://www.prasannakumarr.in/journal/color-to-grayscale-python-image-processing
 
 def readImage(fileImage, umbral):
     im = np.array(Image.open(fileImage).convert('L').resize((256, 256)))
-    print(im)
+    #print(im)
     im_bool = im > umbral
-    print(im_bool)
+    #print(im_bool)
     # Convert to black and white
     im_bin_128 = (im > umbral) * 255
-    print(im_bin_128)
-    Image.fromarray(np.uint8(im_bin_128)).save('img/lena_square_blackandwhite.jpg')
+    #print(im_bin_128)
+    #Image.fromarray(np.uint8(im_bin_128)).save('img/lena_square_blackandwhite.jpg')
     # Return matrix  0s and 1s
     im_bin_01 = (im > umbral) * 1
-    print(im_bin_01)
+    #print(im_bin_01)
     return im_bin_01
 
 
@@ -29,10 +29,11 @@ def main():
     t = 10
     
     img_in = readImage('img/lena_square.jpg', 128)
-    img_out = bin_image = readImage('img/prueba.jpeg', 128)
-
+    img_out = readImage('img/prueba.jpeg', 128)
+    print('[ - ] Imagenes cargadas')
     for i in range(1, t + 1):
         f_t = []
+        print('[ - ] Imagen Transitoria ' + str(i))
         for j, r_in in enumerate(img_in):
             r_out = img_out[j]
             #p,w = minMatchMemorized(r_in, r_out)
@@ -43,11 +44,12 @@ def main():
             # - Los 2 ultimos a la base
             # - En el poligono, 2 puntos consecutivos deben estar unidos por una linea, caso contrario se generaria un error
             polygons = getMemorizedTrapezes(r_in, r_out, t)
+            print('[ - ] Min Match - Fila ' + str(j) + ' de ' + str(len(img_in)))
             r_t = []
             for k, c_in in enumerate(r_in):
                 intersect = False
                 for polygon in polygons:
-                    if isInside(polygon, Point(k, t)):
+                    if isInside(polygon, Point(k, i)):
                         intersect = True
                         break
                 if intersect:
@@ -55,8 +57,9 @@ def main():
                 else:
                     r_t.append(0)
             f_t.append(r_t)
-        
         img = Image.fromarray(np.uint8(f_t))
         img.save('img/t_' + str(i) + '.png')
+        print('[ * ] Imagen creada ' + str(i))
+        f_t.clear()
 
 main()

@@ -68,28 +68,3 @@ def isInside(polygon, p):
         if i == 0:
             break
     return (count % 2) == 1
-
-
-def main():
-    polygon = [Point(0, 0), Point(10, 0), Point(10, 10), Point(0, 10)]
-    p = Point(20, 20)
-    print(isInside(polygon, p))
-
-    p = Point(5, 5)
-    print(isInside(polygon, p))
-    
-    polygon1 = [Point(0, 0), Point(5, 5), Point(5, 0)]
-    p = Point(3, 3)
-    print(isInside(polygon1, p))
-    
-    p = Point(5, 1)
-    print(isInside(polygon1, p))
-    
-    p = Point(8, 1)
-    print(isInside(polygon1, p))
-    
-    polygon2 = [Point(0, 0), Point(10, 0), Point(10, 10), Point(0, 10)]
-    p = Point(-1, 10)
-    print(isInside(polygon2, p))
-
-main()
