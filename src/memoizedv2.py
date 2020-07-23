@@ -5,7 +5,7 @@ from utils2 import *
 
 def main():
     a, b = getData()
-    p, w = minMatchMemoized(a, b)
+    p, w = minMatchMemorized(a, b)
     print ('Min Match:', p)
     print ('Weight:', w)
     #print(reg)
@@ -14,7 +14,7 @@ def main():
 reg = {}
 
 
-def minMatchMemoized(a, b):
+def minMatchMemorized(a, b):
     a_blocks, a_pos_blocks = getBlocks(a)
     b_blocks, b_pos_blocks = getBlocks(b)
     minMatch = minMatchUtil(a_blocks, b_blocks)
