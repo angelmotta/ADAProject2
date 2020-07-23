@@ -94,9 +94,8 @@ def calcWeight(a, b, pairs):
   return result
 
 
-def getPolygons(matches, a_posits, b_posits):
+def getPolygons(matches, a_posits, b_posits, transitions):
   print("\npolygons")
-  transitions = 6
   a_pos = 0
   b_pos = 0
   polygons = []

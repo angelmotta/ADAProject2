@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image
 from intersect import isInside, Point
-from memoizedv2 import minMatchMemorized
+from memoizedv2 import getMemorizedTrapezes
 '''
 Source:
 https://note.nkmk.me/en/python-numpy-opencv-image-binarization/
@@ -42,7 +42,7 @@ def main():
             # - Los 2 primeros puntos corresponderian a el techo del trapecio
             # - Los 2 ultimos a la base
             # - En el poligono, 2 puntos consecutivos deben estar unidos por una linea, caso contrario se generaria un error
-            polygons = []
+            polygons = getMemorizedTrapezes(r_in, r_out, t)
             
             r_t = []
             for k, c_in in enumerate(r_in):
@@ -58,6 +58,6 @@ def main():
             f_t.append(r_t)
         
         img = Image.fromarray(np.uint8(f_t))
-        img.save('img/t_' + str(i) + '.png')
+        img.save('image/t_' + str(i) + '.png')
 
 main()
