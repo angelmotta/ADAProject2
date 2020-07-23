@@ -114,7 +114,7 @@ def getPolygons(matches, a_posits, b_posits, transitions):
         polygons.append(polygon)
         a_pos += 1
         inc += 1
-      polygons[len(polygons)-1][2] = (b_posits[b_pos][1], transitions)
+      polygons[len(polygons)-1][2] = Point(b_posits[b_pos][1], transitions)
       b_pos += 1
 
     elif type(matches[m][1]) is list:
@@ -131,7 +131,7 @@ def getPolygons(matches, a_posits, b_posits, transitions):
         polygons.append(polygon)
         b_pos += 1
         inc += 1
-      polygons[len(polygons) - 1][1] = (a_posits[a_pos][1], 0)
+      polygons[len(polygons) - 1][1] = Point(a_posits[a_pos][1], 0)
       a_pos += 1
 
     else:

@@ -43,7 +43,6 @@ def main():
             # - Los 2 ultimos a la base
             # - En el poligono, 2 puntos consecutivos deben estar unidos por una linea, caso contrario se generaria un error
             polygons = getMemorizedTrapezes(r_in, r_out, t)
-            
             r_t = []
             for k, c_in in enumerate(r_in):
                 intersect = False
@@ -58,6 +57,6 @@ def main():
             f_t.append(r_t)
         
         img = Image.fromarray(np.uint8(f_t))
-        img.save('image/t_' + str(i) + '.png')
+        img.save('img/t_' + str(i) + '.png')
 
 main()
