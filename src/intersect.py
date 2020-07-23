@@ -1,4 +1,4 @@
-import math
+MAX_SIZE = 1000000
 
 class Point:
     def __init__(self, x, y):
@@ -47,7 +47,7 @@ def isInside(polygon, p):
     if n < 3:
         return False
     
-    extreme = Point(math.inf, p.y)
+    extreme = Point(MAX_SIZE, p.y)
   
     count = 0
     i = 0
@@ -57,10 +57,10 @@ def isInside(polygon, p):
         
         if doIntersect(polygon[i], polygon[next], p, extreme):
             if orientation(polygon[i], p, polygon[next]) == 0:
-               return onSegment(polygon[i], p, polygon[next]); 
+                return onSegment(polygon[i], p, polygon[next]); 
             count += 1
         i = next
-        if i != 0:
+        if i == 0:
             break
     return (count % 2) == 1
 
