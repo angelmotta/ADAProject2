@@ -18,18 +18,33 @@ def getData():
 ## Brute get Blocks corregir
 def getBlocks(arr):
   arr_blocks = []
+  pos_blocks = []
   seg = 0
   prev = -1
+  idx = 0
+  xi = 0
+  xf = 0
+  isFirstTime = True
   for num in arr:
     if num == 1:
+      if isFirstTime:
+        xi = idx
+        isFirstTime = False
       seg += 1
     elif num == 0 and prev == 1:
+      xf = idx
+      isFirstTime = True
       arr_blocks.append(seg)
       seg = 0
+      pos_blocks.append((xi, xf - 1))
     prev = num
+    idx += 1
   if seg > 0:
     arr_blocks.append(seg)
-  return arr_blocks
+    print("Positions blocks")
+    pos_blocks.append((xi, idx - 1))
+  return arr_blocks, pos_blocks
+
 
 def simplePair(a, b):
   m = []
