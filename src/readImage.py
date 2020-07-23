@@ -1,6 +1,7 @@
 import numpy as np
 from PIL import Image
-
+from intersect import isInside, Point
+from memoizedv2 import minMatchMemorized
 '''
 Source:
 https://note.nkmk.me/en/python-numpy-opencv-image-binarization/
@@ -23,4 +24,40 @@ def readImage(fileImage, umbral):
     return im_bin_01
 
 
-readImage('img/lena_square.jpg', 128)
+def main():
+    # Numero de imagenes intermedias
+    t = 10
+    
+    img_in = readImage('img/lena_square.jpg', 128)
+    img_out = bin_image = readImage('img/prueba.jpeg', 128)
+
+    for i in range(1, t + 1):
+        f_t = []
+        for j, r_in in enumerate(img_in):
+            r_out = img_out[j]
+            #p,w = minMatchMemorized(r_in, r_out)
+            
+            # Polygons almacenara los trapecios bajo la siguiente estructura
+            # [ [Point(x1, 0), Point(x2, 0), Point(x3, t + 1), Point(x4, t + 1)], [...], ... ]
+            # - Los 2 primeros puntos corresponderian a el techo del trapecio
+            # - Los 2 ultimos a la base
+            # - En el poligono, 2 puntos consecutivos deben estar unidos por una linea, caso contrario se generaria un error
+            polygons = []
+            
+            r_t = []
+            for k, c_in in enumerate(r_in):
+                intersect = False
+                for polygon in polygons:
+                    if isInside(polygon, Point(k, t)):
+                        intersect = True
+                        break
+                if intersect:
+                    r_t.append(255)
+                else:
+                    r_t.append(0)
+            f_t.append(r_t)
+        
+        img = Image.fromarray(np.uint8(f_t))
+        img.save('img/t_' + str(i) + '.png')
+
+main()
