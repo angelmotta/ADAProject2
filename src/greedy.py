@@ -9,8 +9,8 @@ def main():
 
 
 def minMatchBruteGreedy(a, b):
-  n_blocks = getBlocks(a)
-  m_blocks = getBlocks(b)
+  n_blocks, n_pos_blocks = getBlocks(a)
+  m_blocks, m_pos_blocks = getBlocks(b)
   m = []
   maxLen = max(len(n_blocks), len(m_blocks))
   a_i = 0

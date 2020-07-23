@@ -8,15 +8,15 @@ def main():
     p, w = minMatchMemoized(a, b)
     print ('Min Match:', p)
     print ('Weight:', w)
-    print(reg)
+    #print(reg)
 
 
 reg = {}
 
 
 def minMatchMemoized(a, b):
-    a_blocks = getBlocks(a)
-    b_blocks = getBlocks(b)
+    a_blocks, a_pos_blocks = getBlocks(a)
+    b_blocks, b_pos_blocks = getBlocks(b)
     minMatch = minMatchUtil(a_blocks, b_blocks)
     weight = getWeight(minMatch)
     return minMatch, weight
@@ -61,8 +61,8 @@ def minMatchUtil(a_blocks, b_blocks):
                 match[1].append(b_blocks[idx_block_b])
             matches.append(match)
             listMatches.append(matches)
-        print("ListMatches:")
-        print(listMatches)
+        #print("ListMatches:")
+        #print(listMatches)
         minMatchRes = getMinWeigthMatch(listMatches)
         if reg.get(i):
             reg[i][j] = minMatchRes
