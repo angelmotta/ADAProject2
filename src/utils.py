@@ -1,3 +1,7 @@
+import math
+from intersect import Point
+
+
 def getData():
   a = []
   b = []
@@ -84,7 +88,61 @@ def calcWeight(a, b, pairs):
       dem = b[p[1]]
     last_b = p[1]
     last_a = p[0]
-  
+
   result += num / dem
   
   return result
+
+
+def getPolygons(matches, a_posits, b_posits):
+  print("\npolygons")
+  transitions = 6
+  a_pos = 0
+  b_pos = 0
+  polygons = []
+  for m in range(len(matches)):
+    if type(matches[m][0]) is list:
+      # agrupacion
+      acc = sum(matches[m][0])
+      inc = b_posits[b_pos][0]
+      for weight in matches[m][0]:
+        polygon = [Point(a_posits[a_pos][0], 0), Point(a_posits[a_pos][1], 0)]
+        proportion = math.floor((weight * matches[m][1]) / acc)
+        temp = Point(inc, transitions)
+        inc += proportion - 1
+        polygon.append(Point(inc, transitions))
+        polygon.append(temp)
+        polygons.append(polygon)
+        a_pos += 1
+        inc += 1
+      polygons[len(polygons)-1][2] = (b_posits[b_pos][1], transitions)
+      b_pos += 1
+
+    elif type(matches[m][1]) is list:
+      # division
+      acc = sum(matches[m][1])
+      inc = a_posits[a_pos][0]
+      for weight in matches[m][1]:
+        polygon = []
+        proportion = math.floor((weight * matches[m][0]) / acc)
+        polygon.append(Point(inc, 0))
+        inc += proportion - 1
+        polygon.append(Point(inc, 0))
+        polygon.append(Point(b_posits[b_pos][1], transitions))
+        polygon.append(Point(b_posits[b_pos][0], transitions))
+        polygons.append(polygon)
+        b_pos += 1
+        inc += 1
+      polygons[len(polygons) - 1][1] = (a_posits[a_pos][1], 0)
+      a_pos += 1
+
+    else:
+      # trivial
+      polygon = [Point(a_posits[a_pos][0], 0), Point(a_posits[a_pos][1], 0),
+                 Point(b_posits[b_pos][1], transitions),
+                 Point(b_posits[b_pos][0], transitions)]
+      polygons.append(polygon)
+      a_pos += 1
+      b_pos += 1
+
+  return polygons
