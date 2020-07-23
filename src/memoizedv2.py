@@ -19,8 +19,15 @@ def minMatchMemorized(a, b):
     b_blocks, b_pos_blocks = getBlocks(b)
     minMatch = minMatchUtil(a_blocks, b_blocks)
     weight = getWeight(minMatch)
-    getProportions(minMatch, a_pos_blocks, b_pos_blocks)
+    getPolygons(minMatch, a_pos_blocks, b_pos_blocks)
     return minMatch, weight
+
+
+def getMemorizedTrapezes(a, b):
+    a_blocks, a_pos_blocks = getBlocks(a)
+    b_blocks, b_pos_blocks = getBlocks(b)
+    minMatch = minMatchUtil(a_blocks, b_blocks)
+    return getPolygons(minMatch, a_pos_blocks, b_pos_blocks)
 
 
 def minMatchUtil(a_blocks, b_blocks):
