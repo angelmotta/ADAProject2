@@ -10,12 +10,12 @@ def getData():
   m = input()
   for i in m.split():
     a.append(int(i))
-  """
+  #'''
   print('Values of vector B')
   m = input()
   for i in m.split():
       b.append(int(i))
-  """
+  #'''
   return a, b
 
 

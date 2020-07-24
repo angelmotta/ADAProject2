@@ -11,8 +11,8 @@ def main():
     #print(reg)
 
 def minMatchDynamic(a, b):  
-    a_blocks = getBlocks(a)
-    b_blocks = getBlocks(b)
+    a_blocks, a_pos_blocks = getBlocks(a)
+    b_blocks, b_pos_blocks = getBlocks(b)
 
     n = len(a_blocks)
     m = len(b_blocks)
