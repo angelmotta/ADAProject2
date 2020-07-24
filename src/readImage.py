@@ -11,16 +11,16 @@ https://www.prasannakumarr.in/journal/color-to-grayscale-python-image-processing
 
 def readImage(fileImage, umbral):
     im = np.array(Image.open(fileImage).convert('L').resize((256, 256)))
-    #print(im)
+    print(im)
     im_bool = im > umbral
-    #print(im_bool)
+    print(im_bool)
     # Convert to black and white
     im_bin_128 = (im > umbral) * 255
-    #print(im_bin_128)
-    #Image.fromarray(np.uint8(im_bin_128)).save('img/lena_square_blackandwhite.jpg')
+    print(im_bin_128)
+    Image.fromarray(np.uint8(im_bin_128)).save('img/lena_square_blackandwhite.jpg')
     # Return matrix  0s and 1s
     im_bin_01 = (im > umbral) * 1
-    #print(im_bin_01)
+    print(im_bin_01)
     return im_bin_01
 
 
@@ -28,10 +28,10 @@ def main():
     # Numero de imagenes intermedias
     t = 10
     
-    img_in = readImage('img/lena_square.jpg', 128)
+    img_in = readImage('img/image_bw.jpg', 128)
     img = Image.fromarray(np.uint8(img_in*255))
     img.save('images/t_0.png')
-    img_out = readImage('img/image_bw.jpg', 128)
+    img_out = readImage('img/prueba.jpeg', 128)
     img = Image.fromarray(np.uint8(img_out*255))
     img.save('images/t_' + str(t+1) + '.png')
     print('[ - ] Imagenes cargadas')
@@ -67,3 +67,4 @@ def main():
         f_t.clear()
 
 main()
+#readImage('img/lena_square.jpg', 128)
